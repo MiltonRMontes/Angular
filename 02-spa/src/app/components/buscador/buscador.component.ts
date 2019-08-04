@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-buscador',
   templateUrl: './buscador.component.html'
 })
-export class FoundHeroesComponent implements OnInit {
+export class BuscadorComponent implements OnInit {
   termino: string;
   heroes: Heroe[] = [];
   constructor(private activatedRoute: ActivatedRoute,
