@@ -6,6 +6,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   }
+  // { path: 'agregar', loadChildren: './pages/agregar/agregar.module#AgregarPageModule' }
 ];
 @NgModule({
   imports: [
@@ -13,4 +14,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
