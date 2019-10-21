@@ -18,10 +18,22 @@ export class DeseosService {
     return nuevaLista.id;
   }
 
+  borrarLista(lista: Lista) {
+    this.listas = this.listas.filter(listaData => listaData.id !== lista.id);
+    this.guardarStorage();
+  }
+
   obtenerLista(listaId: string | number) {
     listaId = Number(listaId);
     return this.listas.find(listaData => listaData.id === listaId);
   }
+
+  // editarTitulo(lista: Lista, nuevoTitulo: string) {
+  //   const listaId = Number(lista.id);
+  //   lista = this.listas.find(listaData => listaData.id === listaId);
+  //   lista.titulo = nuevoTitulo;
+  //   this.guardarStorage();
+  // }
 
   guardarStorage() {
     localStorage.setItem('data', JSON.stringify(this.listas));
