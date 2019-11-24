@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  private url = 'https://identitytoolkit.googleapis.com/v1/accounts';
+  private url = 'https://identitytoolkit.googleapis.com/v1/accounts:';
   private apiKey = 'AIzaSyC_DDiPfQ0g5XM__uGmgrJda5gr7K-arBA';
   userToken: string;
   //Crear nuevo usuario
@@ -34,7 +34,7 @@ export class AuthService {
     };
 
     return this.http.post(
-      `${this.url}:signInWithPassword?key=${this.apiKey}`,
+      `${this.url}signInWithPassword?key=${this.apiKey}`,
       authData
     ).pipe(
       map(resp => {
@@ -51,7 +51,7 @@ export class AuthService {
     };
 
     return this.http.post(
-      `${this.url}:signUp?key=${this.apiKey}`,
+      `${this.url}signUp?key=${this.apiKey}`,
       authData
     ).pipe(
       map(resp => {
