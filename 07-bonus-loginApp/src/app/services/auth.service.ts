@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioModel } from '../models/usuario.model';
 import { map } from 'rxjs/operators';
+import { componentHostSyntheticProperty } from '@angular/core/src/render3';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class AuthService {
   }
 
   logout() {
-
+    localStorage.removeItem('token');
   }
 
   login(usuario: UsuarioModel) {
@@ -66,6 +67,11 @@ export class AuthService {
   private guardarToken(idToken: string) {
     this.userToken = idToken;
     localStorage.setItem('token', idToken);
+
+    let hoy = new Date();
+    hoy.setSeconds(3600);
+
+    localStorage.setItem('expira', hoy.getTime().toString());
   }
 
   private leerToken() {
@@ -76,5 +82,17 @@ export class AuthService {
     }
 
     return this.userToken;
+  }
+
+  estaAutenticado(): boolean {
+    if (this.userToken.length < 2) {
+      return false;
+    }
+    const expira = Number(localStorage.getItem('expira'));
+    const expiraDate = new Date();
+    expiraDate.setTime(expira);
+
+    return expiraDate > new Date();
+
   }
 }
