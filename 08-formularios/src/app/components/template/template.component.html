@@ -4,19 +4,14 @@
 
   <div>
 
-    <div class="form-group row" [ngClass]="{'has-danger': (nombre.errors?.required || nombre.errors?.minlength) && nombre.touched}">
+    <div class="form-group row"
+      [ngClass]="{'has-danger': (nombre.errors?.required || nombre.errors?.minlength) && nombre.touched}">
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
 
-        <input class="form-control"
-               type="text"
-               placeholder="Nombre"
-               name="nombre"
-               minlength="5"
-               [ngModel] = "usuario.nombre"
-               required
-               #nombre="ngModel">               
-        
+        <input class="form-control" type="text" placeholder="Nombre" name="nombre" minlength="5"
+          [(ngModel)]="usuario.nombre" required #nombre="ngModel">
+
         <div class="form-control-feedback" *ngIf="nombre.errors?.required">
           Este campo es requerido
         </div>
@@ -30,14 +25,9 @@
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
 
-        <input class="form-control"
-               type="text"
-               placeholder="Apellido"
-               name="apellido"
-               [ngModel] = "usuario.apellido"
-               required
-               #apellido="ngModel">                          
-        
+        <input class="form-control" type="text" placeholder="Apellido" name="apellido" [(ngModel)]="usuario.apellido"
+          required #apellido="ngModel">
+
         <div *ngIf="apellido.errors?.required">
           Este campo es requerido
         </div>
@@ -50,26 +40,57 @@
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-md-8">
 
-      <input class="form-control"
-             type="email"
-             placeholder="Correo electrónico"
-             name="correo"
-             [ngModel] = "usuario.correo"
-             required
-             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-             #correo="ngModel">
+      <input class="form-control" type="email" placeholder="Correo electrónico" name="correo" [(ngModel)]="usuario.correo"
+        required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #correo="ngModel">
 
-                        
-        
-        <div *ngIf="correo.errors?.required">
-          Este campo es requerido
-        </div>
-        <div *ngIf="correo.errors?.pattern">
-          Este campo debe ser un correo electrónico
-        </div>
+
+
+      <div *ngIf="correo.errors?.required">
+        Este campo es requerido
+      </div>
+      <div *ngIf="correo.errors?.pattern">
+        Este campo debe ser un correo electrónico
+      </div>
     </div>
   </div>
 
+  <div class="form-group row">
+    <label class="col-2 col-form-label">País</label>
+    <div class="col-md-8">
+      <select [(ngModel)]="usuario.pais" class="form-control" name="pais">
+        <option value="">Seleccione un país</option>
+        <option *ngFor="let pais of paises" [value]="pais.codigo">{{pais.nombre}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Sexo</label>
+    <div class="col-md-8">
+      <label *ngFor="let s of sexos" class="custom-control custom-radio">
+        <input [(ngModel)]="usuario.sexo" name="sexo" [value]="s" type="radio" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">{{s}}</span>
+      </label>
+      <!-- <label class="custom-control custom-radio">
+                <input [(ngModel)]="usuario.sexo" name="sexo" value="Mujer" type="radio" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Mujer</span>
+            </label> -->
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+      <label class="col-2 col-form-label">Acepta</label>
+      <div class="col-md-8">
+        <label class="custom-control custom-checkbox">
+          <input [(ngModel)]="usuario.acepta" name="acepta" type="checkbox" class="custom-control-input" required>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Acepta las condiciones</span>
+        </label>
+      </div>
+    </div>
 
 
   <div class="form-group row">
@@ -82,3 +103,7 @@
   </div>
 
 </form>
+
+<pre>
+  {{ usuario | json }}
+</pre>
