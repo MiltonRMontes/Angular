@@ -35,6 +35,39 @@
   </div>
 
   <div class="form-group row">
+    <label class="col-2 col-form-label">Username</label>
+    <div class="col-md-8">
+
+      <input class="form-control"
+             type="text"
+             placeholder="Usuario"
+             formControlName="userName">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Password</label>
+    <div class="col-md-8">
+
+      <input class="form-control"
+             type="password"
+             placeholder="Password"
+             formControlName="password1">
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Repetir password</label>
+    <div class="col-md-8">
+
+      <input class="form-control"
+             type="password"
+             placeholder="Repetir password"
+             formControlName="password2">
+    </div>
+  </div>
+
+  <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-md-8">
 
@@ -69,4 +102,6 @@
   </div>
 
   {{ forma.valid }}
+  <br>
+  {{ forma.status }}
 </form>
